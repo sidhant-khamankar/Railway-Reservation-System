@@ -4,7 +4,7 @@ OOP Subject Project Based Learning
 
 Topic: Railway Reservation System
 
-Description: This program will allow admin to generate user ids ,set Train info and see all Reservations, users and cancellations. User can Reserve, Enquire and Cancel Ticket. Ticket fare will be calculated based upon concession category. Every data will be written to files in binary form using file Handling. Updation of Seats after reservation and cancellation takes place as well.
+Description: This program will allow admin to generate user ids ,set Train info and see all Reservations, users and cancellations. User can Reserve, Enquire and Cancel Ticket. Ticket fare will be calculated based upon concession category. Every data will be written to files in binary form using file Handling. Updation of Seats after reservation and cancellation takes place as well. PNR is generated randomly using random function.
 
 ## Flowchart Links
 
