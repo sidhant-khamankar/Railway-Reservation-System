@@ -87,3 +87,9 @@ Binary file. Contains Cancellation Records.
 
 ### temp.txt:
 Binary file. Holds Reservation Records except Cancellation Records.
+
+## Applications
+We can use a similar system for bus, airline reservations, theatre ticket booking and Library Management i.e It will be used wherever there is need of booking or reserving. 
+
+## Conclusion
+We learnt to implement Object Oriented Programming and File Handling Concept in this project.
