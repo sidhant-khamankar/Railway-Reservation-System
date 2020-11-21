@@ -45,7 +45,7 @@ It has subfunctions to Add Train, Display all trains and following functions
 
 #### User Management: 
 
-It can be used to add new Users and display existing users with their ID and passoword.
+It can be used to add new Users and display existing users with their ID and password.
 
 #### Display Reservations:
 
