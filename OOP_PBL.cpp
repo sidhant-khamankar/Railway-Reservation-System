@@ -33,7 +33,7 @@ public:
         cout << "Enter your id:";
         cin >> id;
         // password = getpass("Enter the password:");
-        cout << "Enter the administrator password: ";
+        cout << "Enter the password: ";
         cin >> password;
         strcpy(pass, password);
     }
@@ -118,7 +118,9 @@ public:
         for (i = 0; i < nosr; i++)
         {
             cout << "Passenger " << i + 1 << " Name: ";
-            cin >> pname[i];
+            cin.sync();                 //as cin does not consume '\n' so we must flush the input buffer
+            cin.getline(pname[i], 100); // to get whitespaces upto '\n'
+                                        // or scanf(" %[^\n]s", tname); //to get whitespace
             cout << "Passenger " << i + 1 << " Age: ";
             cin >> age[i];
         }
@@ -618,7 +620,7 @@ void user()
     cout << "Enter your id: ";
     cin >> id;
 
-    cout << "Enter the administrator password: ";
+    cout << "Enter the password: ";
     cin >> password;
     while (f.read((char *)&a, sizeof(a)))
     {
