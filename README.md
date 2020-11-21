@@ -1,6 +1,7 @@
 # College-OOP-PBL - Railway Reservation System
 
-OOP Subject Project Based Learning
+OOP Subject Project Based Learning 
+Github: https://github.com/sidhant-khamankar/Railway-Reservation-System
 
 Topic: Railway Reservation System
 
@@ -87,6 +88,34 @@ Binary file. Contains Cancellation Records.
 
 ### temp.txt:
 Binary file. Holds Reservation Records except Cancellation Records.
+
+## Output
+
+Admin Adds Trains
+![admin add trains](https://user-images.githubusercontent.com/63101268/99869289-cbb8dc00-2bef-11eb-9715-c09c270a3577.jpg)
+
+Admin display trains
+![admin display trains](https://user-images.githubusercontent.com/63101268/99869296-cf4c6300-2bef-11eb-92bf-c4073e1c58ed.jpg)
+
+Admin adds and displays users
+![admin user add and display](https://user-images.githubusercontent.com/63101268/99869297-cfe4f980-2bef-11eb-8e30-4a3fc541b072.jpg)
+
+User Reservs
+![user reserv_1](https://user-images.githubusercontent.com/63101268/99869301-d1aebd00-2bef-11eb-97c1-9e396ac74d0a.jpg)
+![user reserv_2](https://user-images.githubusercontent.com/63101268/99869302-d2475380-2bef-11eb-81ac-091fc6618de4.jpg)
+
+User Enquires after Reservation
+![user enquiry after reservation](https://user-images.githubusercontent.com/63101268/99869299-d1162680-2bef-11eb-989c-194a80dec75e.jpg)
+
+Admin displays all reservations
+![admin display reservations](https://user-images.githubusercontent.com/63101268/99869295-ceb3cc80-2bef-11eb-950f-fd3448fc85fc.jpg)
+
+User cancels reservation
+![user cancel](https://user-images.githubusercontent.com/63101268/99869298-d07d9000-2bef-11eb-8a90-5c15e71f225c.jpg)
+
+Admin displays all cancellations
+![admin display cancellations](https://user-images.githubusercontent.com/63101268/99869291-cd829f80-2bef-11eb-90de-ca1d2fb4e60e.jpg)
+
 
 ## Applications
 We can use a similar system for bus, airline reservations, theatre ticket booking and Library Management i.e It will be used wherever there is need of booking or reserving. 
