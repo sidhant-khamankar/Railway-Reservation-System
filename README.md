@@ -28,7 +28,7 @@ Contains Train Details like name, number, class type and their fares, date, boar
 
 ### Reserve: 
 
-Contains Passenger details like name, age and the corressponding booked train details along with PNR number, concession, reserved seats. It has function for inputting these details and printing them.
+Contains Passenger details like name, age and the corresponding booked train details along with PNR number, concession, reserved seats. It has function for inputting these details and printing them.
 
 ### Cancel: 
 
