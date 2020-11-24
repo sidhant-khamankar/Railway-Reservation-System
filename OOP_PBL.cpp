@@ -350,10 +350,10 @@ void res()
                     strcpy(b.tname, a.tname);
                     amt = a.c1fare;
                     addr = f1.tellg();
-                    ad = sizeof(a.c1);
-                    f1.seekp(addr - (7 * ad));
+                    ad = sizeof(a);
+                    f1.seekp(addr - (ad));
                     a.c1 = a.c1 - b.nosr;
-                    f1.write((char *)&a.c1, sizeof(a.c1)); //Update Seats in Train Record
+                    f1.write((char *)&a, sizeof(a)); //Update Seats in Train Record
                     if (b.con == 1)
                     {
                         cout << "Concession category: MILITARY PERSONNEL\n";
@@ -394,10 +394,10 @@ void res()
                     strcpy(b.tname, a.tname);
                     amt = a.c2fare;
                     addr = f1.tellg();
-                    ad = sizeof(a.c2);
-                    f1.seekp(addr - (5 * ad));
+                    ad = sizeof(a);
+                    f1.seekp(addr - (ad));
                     a.c2 = a.c2 - b.nosr;
-                    f1.write((char *)&a.c2, sizeof(a.c2)); //Update Seats in Train Record
+                    f1.write((char *)&a, sizeof(a)); //Update Seats in Train Record
                     if (b.con == 1)
                     {
                         cout << "Concession category:MILITARY PRESONNEL\n";
@@ -477,7 +477,7 @@ void cancell() //cancel ticket
     detail a;                 //Train record
     reser b;                  //Reservation record
     canc c;                   //Cancel record
-    int flagc;                //Not found status flag
+    int flagc = 0;            //Not found status flag
     fstream f1, f2, f3, temp; //Train, Reservation, cancellation and temp file
     f1.open("t.txt", ios::in | ios::out | ios::binary);
     f2.open("p.txt", ios::in | ios::out | ios::binary);
@@ -511,9 +511,9 @@ void cancell() //cancel ticket
                         d = a.d;
                         m = a.m;
                         addr = f1.tellg();
-                        ad = sizeof(a.c1);
-                        f1.seekp(addr - (7 * ad)); //Update Seats in Train Record
-                        f1.write((char *)&a.c1, sizeof(a.c1));
+                        ad = sizeof(a);
+                        f1.seekp(addr - (ad));
+                        f1.write((char *)&a, sizeof(a)); //Update Seats in Train Record
                         tamt = b.amc;
                         //Calculate concession amount
                         if ((c.d == d) && (c.m == m))
@@ -551,9 +551,9 @@ void cancell() //cancel ticket
                         d = a.d;
                         m = a.m;
                         addr = f1.tellg();
-                        ad = sizeof(a.c2);
-                        f1.seekp(addr - (5 * ad));
-                        f1.write((char *)&a.c2, sizeof(a.c2)); //Update Seats in Train Record
+                        ad = sizeof(a);
+                        f1.seekp(addr - (ad));
+                        f1.write((char *)&a, sizeof(a)); //Update Seats in Train Record
                         tamt = b.amc;
                         //Calculate concession amount
                         if ((c.d == d) && (c.m == m))
@@ -594,7 +594,7 @@ void cancell() //cancel ticket
     }
     if (flagc == 0)
     {
-        cout << "Enter the correct PNR no\n";
+        cout << "\n\nEnter the correct PNR no\n\n";
     }
     f3.write((char *)&c, sizeof(c)); //Add record in cancel file
     f1.close();                      //Close files
