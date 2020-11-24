@@ -103,7 +103,7 @@ Admin adds and displays users
 
 ![admin user add and display](https://user-images.githubusercontent.com/63101268/99869297-cfe4f980-2bef-11eb-8e30-4a3fc541b072.jpg)
 
-User Reservs
+User Reserves
 
 ![user reserv_1](https://user-images.githubusercontent.com/63101268/99869301-d1aebd00-2bef-11eb-97c1-9e396ac74d0a.jpg)
 ![user reserv_2](https://user-images.githubusercontent.com/63101268/99869302-d2475380-2bef-11eb-81ac-091fc6618de4.jpg)
