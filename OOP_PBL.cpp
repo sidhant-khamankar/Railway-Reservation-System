@@ -28,16 +28,15 @@ public:
     char id[100];   //UserID
     char pass[100]; //User Password
     char *password;
-    void getid()
+    void getid() //take input of user id and password
     {
         cout << "Enter your id:";
         cin >> id;
-        // password = getpass("Enter the password:");
         cout << "Enter the password: ";
         cin >> password;
         strcpy(pass, password);
     }
-    void displayid()
+    void displayid() //display id and password of all users
     {
         cout << id << "\t" << pass << endl;
     }
@@ -177,7 +176,7 @@ public:
     int nosc;            //No. of Cancellations
     int d, m, y;
     float amr;
-    void getcancdet()
+    void getcancdet() //Get cancellation details
     {
         cout << "Enter the details as follows\n";
         cout << "PNR no: ";
@@ -186,7 +185,7 @@ public:
         cin >> d >> m >> y;
         cout << "...........END OF GETTING DETAILS...........\n";
     }
-    void displaycancdet()
+    void displaycancdet() //display cancelled ticket details
     {
         cout << "...........................................\n";
         cout << "...........................................\n";
@@ -261,7 +260,6 @@ void database() //Admin Menu
     {
         cout << "Enter the password correctly\n";
         cout << "You are not permitted to login in this mode\n";
-        // goto h;
     }
     if (strcmp(pass, password) == 0) //Password Matches
     {
@@ -279,11 +277,11 @@ void database() //Admin Menu
             switch (ch)
             {
             case 1:
-                f.open("t.txt", ios::in | ios::out | ios::binary | ios::app);
+                f.open("t.txt", ios::in | ios::out | ios::binary | ios::app); //open file in read, write, binary and append mode
                 do
                 {
-                    a.getdetail();
-                    f.write((char *)&a, sizeof(a));
+                    a.getdetail();                  //Get Train Information from admin
+                    f.write((char *)&a, sizeof(a)); //write train record to file
                     cout << "Do you want to add one more record?\n";
                     cout << "y-for Yes\nn-for No\n: ";
                     cin >> c;
@@ -292,13 +290,13 @@ void database() //Admin Menu
                 break;
             case 2:
                 cout << "Train No.\tTrain Name\tBoarding Station\tDestination Station\tFirst Class Seats\tFirst Class Fare\tSecond Class Seats\tSecond Class Fare\tDate\n";
-                f.open("t.txt", ios::in | ios::out | ios::binary | ios::app);
-                f.seekg(0);
-                while (f.read((char *)&a, sizeof(a)))
+                f.open("t.txt", ios::in | ios::out | ios::binary | ios::app); //open file in read, write, binary and append mode
+                f.seekg(0);                                                   //Seek read pointer to beginning of file
+                while (f.read((char *)&a, sizeof(a)))                         //reads records one by one
                 {
-                    a.displaydetail();
+                    a.displaydetail(); //Display Train detail
                 }
-                f.close();
+                f.close(); //Close file
                 cout << "\n\n";
                 break;
             case 3:
@@ -318,11 +316,11 @@ void database() //Admin Menu
 
 void displaycan() //Display Cancellations
 {
-    fstream f3; //Cancel file
-    canc c;     //Cancel Record
-    f3.open("cn.txt", ios::in | ios::out | ios::binary);
-    f3.seekg(0);
-    while (f3.read((char *)&c, sizeof(c)))
+    fstream f3;                                          //Cancel file
+    canc c;                                              //Cancel Record
+    f3.open("cn.txt", ios::in | ios::out | ios::binary); //open file in read, write and binary mode
+    f3.seekg(0);                                         //Seek read pointer to beginning of file
+    while (f3.read((char *)&c, sizeof(c)))               //reads records one by one
     {
         c.displaycancdet(); //Displat Invidual Cancel Record
     }
@@ -331,15 +329,15 @@ void displaycan() //Display Cancellations
 
 void res()
 {
-    detail a;       //Train Record
-    reser b;        //Reservation Record
-    fstream f1, f2; //Train and Reservation file
-    time_t t;       //Storing Calendar time
-    f1.open("t.txt", ios::in | ios::out | ios::binary);
-    f2.open("p.txt", ios::in | ios::out | ios::binary | ios::app);
-    int ch;        //Choice
-    b.getresdet(); //Get Reservation details
-    while (f1.read((char *)&a, sizeof(a)))
+    detail a;                                                      //Train Record
+    reser b;                                                       //Reservation Record
+    fstream f1, f2;                                                //Train and Reservation file
+    time_t t;                                                      //Storing Calendar time
+    f1.open("t.txt", ios::in | ios::out | ios::binary);            //open file in read, write and binary mode
+    f2.open("p.txt", ios::in | ios::out | ios::binary | ios::app); //open file in read, write, binary and append mode
+    int ch;                                                        //Choice
+    b.getresdet();                                                 //Get Reservation details
+    while (f1.read((char *)&a, sizeof(a)))                         //reads records one by one
     {
         if (a.tno == b.tno) //Train No. Check
         {
@@ -347,32 +345,32 @@ void res()
             {
                 if (a.c1 >= b.nosr) //Seats check
                 {
-                    strcpy(b.tname, a.tname);
+                    strcpy(b.tname, a.tname); //Copy train name from train record to reservation record
                     amt = a.c1fare;
-                    addr = f1.tellg();
+                    addr = f1.tellg(); //get read pointer location
                     ad = sizeof(a);
-                    f1.seekp(addr - (ad));
+                    f1.seekp(addr - (ad)); //set write pointer one record back for updation
                     a.c1 = a.c1 - b.nosr;
                     f1.write((char *)&a, sizeof(a)); //Update Seats in Train Record
                     if (b.con == 1)
                     {
                         cout << "Concession category: MILITARY PERSONNEL\n";
-                        b.amc = b.nosr * ((amt * 50) / 100);
+                        b.amc = b.nosr * ((amt * 50) / 100); //50% concession
                     }
                     else if (b.con == 2)
                     {
                         cout << "Concession category: SENIOR CITIZEN\n";
-                        b.amc = b.nosr * ((amt * 60) / 100);
+                        b.amc = b.nosr * ((amt * 60) / 100); //60% concession
                     }
                     else if (b.con == 3)
                     {
                         cout << "Concession category: CHILDREN BELOW FIVE\n";
-                        b.amc = 0.0;
+                        b.amc = 0.0; //Free
                     }
                     else if (b.con == 4)
                     {
                         cout << "You cannot get any concession\n";
-                        b.amc = b.nosr * amt;
+                        b.amc = b.nosr * amt; //No Concession
                     }
                     srand((unsigned)time(&t));       //Initializes random number generator by seeding it. The srand() function sets the starting point for producing a series of pseudo-random integers. . time() returns a time_t value which vary everytime and hence the pseudo-random number vary for every program call.
                     b.pnr = rand();                  //rand() function is used in C to generate random numbers.
@@ -391,32 +389,32 @@ void res()
             {
                 if (a.c2 >= b.nosr)
                 {
-                    strcpy(b.tname, a.tname);
+                    strcpy(b.tname, a.tname); //Copy train name from train record to reservation record
                     amt = a.c2fare;
-                    addr = f1.tellg();
+                    addr = f1.tellg(); //get read pointer location
                     ad = sizeof(a);
-                    f1.seekp(addr - (ad));
+                    f1.seekp(addr - (ad)); //set write pointer one record back for updation
                     a.c2 = a.c2 - b.nosr;
                     f1.write((char *)&a, sizeof(a)); //Update Seats in Train Record
                     if (b.con == 1)
                     {
                         cout << "Concession category:MILITARY PRESONNEL\n";
-                        b.amc = b.nosr * ((amt * 50) / 100);
+                        b.amc = b.nosr * ((amt * 50) / 100); //50% concession
                     }
                     else if (b.con == 2)
                     {
                         cout << "Concession category:SENIOR CITIZEN\n";
-                        b.amc = b.nosr * ((amt * 60) / 100);
+                        b.amc = b.nosr * ((amt * 60) / 100); //60% concession
                     }
                     else if (b.con == 3)
                     {
                         cout << "Concession category:CHILDERN BELOW FIVE\n";
-                        b.amc = 0.0;
+                        b.amc = 0.0; //Free
                     }
                     else if (b.con == 4)
                     {
                         cout << "You cannot get any concession\n";
-                        b.amc = b.nosr * amt;
+                        b.amc = b.nosr * amt; //No Concession
                     }
                     srand((unsigned)time(&t));       //Initializes random number generator by seeding it. The srand() function sets the starting point for producing a series of pseudo-random integers. . time() returns a time_t value which vary everytime and hence the pseudo-random number vary for every program call.
                     b.pnr = rand();                  //rand() function is used in C to generate random numbers.
@@ -449,11 +447,11 @@ void res()
 }
 void displaypassdetail() // display reservations
 {
-    fstream f; //Reservation file
-    reser b;   //Reservation Record
-    f.open("p.txt", ios::in | ios::out | ios::binary);
-    f.seekg(0);
-    while (f.read((char *)&b, sizeof(b)))
+    fstream f;                                         //Reservation file
+    reser b;                                           //Reservation Record
+    f.open("p.txt", ios::in | ios::out | ios::binary); //open file in read, write and binary mode
+    f.seekg(0);                                        //Seek read pointer to beginning of file
+    while (f.read((char *)&b, sizeof(b)))              //reads records one by one
     {
         b.displayresdet(); //Display individual record
     }
@@ -462,10 +460,10 @@ void displaypassdetail() // display reservations
 void enquiry() //enquire about train information
 {
     cout << "Train No.\tTrain Name\tBoarding Station\tDestination Station\tFirst Class Seats\tFirst Class Fare\tSecond Class Seats\tSecond Class Fare\tDate\n";
-    fstream f; //Train file
-    f.open("t.txt", ios::in | ios::out | ios::binary);
+    fstream f;                                         //Train file
+    f.open("t.txt", ios::in | ios::out | ios::binary); //open file in read, write and binary mode
     detail a;
-    while (f.read((char *)&a, sizeof(a)))
+    while (f.read((char *)&a, sizeof(a))) //reads records one by one
     {
         a.displaydetail(); //dispaly individual train record
     }
@@ -474,18 +472,18 @@ void enquiry() //enquire about train information
 
 void cancell() //cancel ticket
 {
-    detail a;                 //Train record
-    reser b;                  //Reservation record
-    canc c;                   //Cancel record
-    int flagc = 0;            //Not found status flag
-    fstream f1, f2, f3, temp; //Train, Reservation, cancellation and temp file
-    f1.open("t.txt", ios::in | ios::out | ios::binary);
-    f2.open("p.txt", ios::in | ios::out | ios::binary);
-    f3.open("cn.txt", ios::in | ios::out | ios::binary | ios::app);
-    temp.open("temp.txt", ios::in | ios::out | ios::binary | ios::app);
+    detail a;                                                           //Train record
+    reser b;                                                            //Reservation record
+    canc c;                                                             //Cancel record
+    int flagc = 0;                                                      //Not found status flag
+    fstream f1, f2, f3, temp;                                           //Train, Reservation, cancellation and temp file
+    f1.open("t.txt", ios::in | ios::out | ios::binary);                 //open file in read, write and binary mode
+    f2.open("p.txt", ios::in | ios::out | ios::binary);                 //open file in read, write and binary mode
+    f3.open("cn.txt", ios::in | ios::out | ios::binary | ios::app);     //open file in read, write, binary and append mode
+    temp.open("temp.txt", ios::in | ios::out | ios::binary | ios::app); //open file in read, write, binary and append mode
     cout << "**********CANCELLATION MENU*********\n";
-    c.getcancdet(); //get cancel details
-    while (f2.read((char *)&b, sizeof(b)))
+    c.getcancdet();                        //get cancel details
+    while (f2.read((char *)&b, sizeof(b))) //reads records one by one
     {
         if (b.pnr == c.pnr) //PNR check
         {
@@ -502,7 +500,7 @@ void cancell() //cancel ticket
             strcpy(c.clas, b.clas);     //Copy class
             if (strcmp(c.clas, f) == 0) //First class check
             {
-                while (f1.read((char *)&a, sizeof(a)))
+                while (f1.read((char *)&a, sizeof(a))) //reads records one by one
                 {
 
                     if (a.tno == c.tno)
@@ -510,12 +508,13 @@ void cancell() //cancel ticket
                         a.c1 = a.c1 + c.nosc;
                         d = a.d;
                         m = a.m;
-                        addr = f1.tellg();
+                        addr = f1.tellg(); //get read pointer location
                         ad = sizeof(a);
                         f1.seekp(addr - (ad));
                         f1.write((char *)&a, sizeof(a)); //Update Seats in Train Record
                         tamt = b.amc;
-                        //Calculate concession amount
+
+                        //Calculate deduction amount
                         if ((c.d == d) && (c.m == m))
                         {
                             cout << "You are cancelling at the date of departure\n";
@@ -542,7 +541,7 @@ void cancell() //cancel ticket
             }
             else if (strcmp(c.clas, s) == 0) //Second class check
             {
-                while (f1.read((char *)&a, sizeof(a)))
+                while (f1.read((char *)&a, sizeof(a))) //reads records one by one
                 {
 
                     if (a.tno == c.tno)
@@ -550,12 +549,13 @@ void cancell() //cancel ticket
                         a.c2 = a.c2 + c.nosc;
                         d = a.d;
                         m = a.m;
-                        addr = f1.tellg();
+                        addr = f1.tellg(); //get read pointer location
                         ad = sizeof(a);
                         f1.seekp(addr - (ad));
                         f1.write((char *)&a, sizeof(a)); //Update Seats in Train Record
                         tamt = b.amc;
-                        //Calculate concession amount
+
+                        //Calculate deduction amount
                         if ((c.d == d) && (c.m == m))
                         {
                             cout << "You are cancelling at the date of departure\n";
@@ -614,15 +614,15 @@ void user()
     cout << "****************************************************\n";
     char password[15]; //User Password
 
-    fstream f; //User file
-    f.open("id.txt", ios::in | ios::out | ios::binary);
-    char id[100]; //UserID
+    fstream f;                                          //User file
+    f.open("id.txt", ios::in | ios::out | ios::binary); //open file in read, write and binary mode
+    char id[100];                                       //UserID
     cout << "Enter your id: ";
     cin >> id;
 
     cout << "Enter the password: ";
     cin >> password;
-    while (f.read((char *)&a, sizeof(a)))
+    while (f.read((char *)&a, sizeof(a))) //reads records one by one
     {
         if ((strcmp(a.id, id) == 0) && (strcmp(a.pass, password) == 0)) //login check
         {
@@ -676,7 +676,7 @@ void manage() //User Management
         switch (ch)
         {
         case 1:
-            f.open("id.txt", ios::in | ios::out | ios::binary | ios::app);
+            f.open("id.txt", ios::in | ios::out | ios::binary | ios::app); //open file in read, write, binary and append mode
             do
             {
                 a.getid();                      //Store UserID and password
@@ -689,11 +689,11 @@ void manage() //User Management
             break;
 
         case 2:
-            f.open("id.txt", ios::in | ios::out | ios::binary);
+            f.open("id.txt", ios::in | ios::out | ios::binary); //open file in read, write and binary mode
 
-            f.seekg(0); //Move file pointer to beginning
+            f.seekg(0); //Seek read pointer to beginning of file
             cout << "UserID\tPassword\n";
-            while (f.read((char *)&a, sizeof(a)))
+            while (f.read((char *)&a, sizeof(a))) //reads records one by one
             {
                 a.displayid(); //Dispaly User Record
             }
