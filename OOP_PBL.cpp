@@ -24,10 +24,13 @@ float tamt;                        //Total amount
 
 class login //User Menu
 {
+private:
+    char *password;
+
 public:
     char id[100];   //UserID
     char pass[100]; //User Password
-    char *password;
+
     void getid() //take input of user id and password
     {
         cout << "Enter your id:";
