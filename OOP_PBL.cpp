@@ -401,7 +401,7 @@ void res()
                     f1.write((char *)&a, sizeof(a)); //Update Seats in Train Record
                     if (b.con == 1)
                     {
-                        cout << "Concession category:MILITARY PRESONNEL\n";
+                        cout << "Concession category:MILITARY PERSONNEL\n";
                         b.amc = b.nosr * ((amt * 50) / 100); //50% concession
                     }
                     else if (b.con == 2)
