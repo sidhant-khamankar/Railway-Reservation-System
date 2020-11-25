@@ -26,15 +26,13 @@ class login //User Menu
 public:
     char id[100];   //UserID
     char pass[100]; //User Password
-    char *password;
 
     void getid() //take input of user id and password
     {
         cout << "Enter your id:";
         cin >> id;
         cout << "Enter the password: ";
-        cin >> password;
-        strcpy(pass, password);
+        cin >> pass;
     }
     void displayid() //display id and password of all users
     {
