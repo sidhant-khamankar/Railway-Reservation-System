@@ -601,7 +601,7 @@ void cancell() //cancel ticket
     f2.close();
     f3.close();
     remove("p.txt");             //remove old Reservation File
-    rename("temp.dat", "p.txt"); //renames temp to new Reservation file
+    rename("temp.txt", "p.txt"); //renames temp to new Reservation file
 }
 
 void user()
