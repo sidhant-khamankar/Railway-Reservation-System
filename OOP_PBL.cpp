@@ -4,7 +4,6 @@
 #include <string.h> // has various functions for manipulating arrays of characters.
 #include <iostream> //provides basic input and output services
 #include <time.h>   // has various functions for manipulating date and time.
-#include <iomanip>  //used for manipulating streams.
 #include <fstream>  //Input/output stream class to operate on files.
 using namespace std;
 
@@ -24,12 +23,10 @@ float tamt;                        //Total amount
 
 class login //User Menu
 {
-private:
-    char *password;
-
 public:
     char id[100];   //UserID
     char pass[100]; //User Password
+    char *password;
 
     void getid() //take input of user id and password
     {
@@ -240,7 +237,7 @@ int main()
             database(); //Admin Mode
             break;
         case 2:
-            user(); //User Moe
+            user(); //User Mode
             break;
         case 3:
             exit(0); //Exit
@@ -338,12 +335,16 @@ void res()
     time_t t;                                                      //Storing Calendar time
     f1.open("t.txt", ios::in | ios::out | ios::binary);            //open file in read, write and binary mode
     f2.open("p.txt", ios::in | ios::out | ios::binary | ios::app); //open file in read, write, binary and append mode
-    int ch;                                                        //Choice
-    b.getresdet();                                                 //Get Reservation details
-    while (f1.read((char *)&a, sizeof(a)))                         //reads records one by one
+    int ch;
+    cout << "\nEnter Train No.: ";
+    cin >> b.tno; //Choice
+
+    while (f1.read((char *)&a, sizeof(a))) //reads records one by one
     {
         if (a.tno == b.tno) //Train No. Check
         {
+            cout << "\nEnter Train No. again for confirmation\n";
+            b.getresdet();              //Get Reservation details
             if (strcmp(b.clas, f) == 0) //if First class
             {
                 if (a.c1 >= b.nosr) //Seats check
@@ -613,7 +614,7 @@ void user()
     int flagu; //Not found status flag
     int ch;    //Choice
     cout << "*****************************************************\n";
-    cout << "***********WELCOME TO THE USER MENU**\n";
+    cout << "***********WELCOME TO THE USER MENU****************\n";
     cout << "****************************************************\n";
     char password[15]; //User Password
 
