@@ -129,4 +129,4 @@ Admin displays all cancellations
 We can use a similar system for bus, airline reservations, theatre ticket booking and Library Management i.e It will be used wherever there is need of booking or reserving. 
 
 ## Conclusion
-We learnt to implement Object Oriented Programming and File Handling Concept in this project.
+We learnt to implement Object Oriented Programming Concepts like Encapsulation and Abstraction and File Handling Concept in this project.
